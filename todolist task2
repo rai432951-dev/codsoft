@@ -1,0 +1,70 @@
+def task():
+    tasks = []  # empty list
+    print("___WELCOME TO THE TASK MANAGEMENT APP___")
+
+    # Add initial tasks
+    total_task = int(input("Enter how many tasks you want to add: "))
+    for i in range(1, total_task + 1):
+        task_name = input(f"Enter task {i}: ")
+        tasks.append(task_name)
+
+    print("\nToday's tasks are:")
+    for i, t in enumerate(tasks, start=1):
+        print(f"{i}. {t}")
+
+    # Start task operations
+    while True:
+        print("\nChoose an operation:")
+        print("1 - Add Task")
+        print("2 - Update Task")
+        print("3 - Delete Task")
+        print("4 - View Tasks")
+        print("5 - Exit")
+
+        try:
+            operation = int(input("Enter your choice: "))
+        except ValueError:
+            print("Please enter a valid number!")
+            continue
+
+        if operation == 1:
+            add = input("Enter the task you want to add: ")
+            tasks.append(add)
+            print(f"Task '{add}' has been successfully added.")
+
+        elif operation == 2:
+            updated_val = input("Enter the task you want to update: ")
+            if updated_val in tasks:
+                new_task = input("Enter the new task: ")
+                ind = tasks.index(updated_val)
+                tasks[ind] = new_task
+                print(f"Task updated to '{new_task}'.")
+            else:
+                print("Task not found.")
+
+        elif operation == 3:
+            del_val = input("Enter the task you want to delete: ")
+            if del_val in tasks:
+                tasks.remove(del_val)
+                print(f"Task '{del_val}' has been deleted.")
+            else:
+                print("Task not found.")
+
+        elif operation == 4:
+            if not tasks:
+                print("No tasks available.")
+            else:
+                print("\nCurrent Tasks:")
+                for i, t in enumerate(tasks, start=1):
+                    print(f"{i}. {t}")
+
+        elif operation == 5:
+            print("Exiting the Task Manager. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please select a valid option (1-5).")
+
+
+# Run the task manager
+task()
